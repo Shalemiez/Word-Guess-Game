@@ -1,19 +1,31 @@
-var win = 0;
-var loss = 0;
-var guestleft = 9;
+// var win = 0;
+// var loss = 0;
+// var guestleft = 9;
 
 
-function randomLetter() {
-    var letter = "abcdefghijklmnopqrstuvwxyz"
-    var num = Math.floor((Math.random() * letter.length + 1));
-    var ranletter = letter.charAt(num);
-    return ranletter;
-}
+// function randomLetter(letter) {
+//     var letter = "abcdefghijklmnopqrstuvwxyz"
+//     var num = Math.floor((Math.random() * letter.length + 1));
+//     var ranletter = letter.charAt(num);
+//     return ranletter;
 
-console.log(randomLetter())
+// }
+
+// for (var i = 0; i < 10; i++) {
+//     if (letter === e) {
+//         console.log("you got me")
+//         win = this.win + 1
+//     } else {
+//         console.log("nope")
+//         loss = this.loss + 1
+//     }
+// }
 
 
-
+document.onkeyup = function (event) {
+    console.log(event.key);
+    document.querySelector('#guess').textcontent = event.key;
+};
 
 
 
