@@ -5,29 +5,51 @@ function randomLetter() {
     return ranletter;
 
 }
-// document.onkeyup = function (guess) {
-//     console.log(guess.key);
-//     document.querySelector('#guess').textContent = guess.key + (',');
-// };
 
-var win = 0;
-var loss = 0;
-var guestleft = 9;
-document.onkeyup = function guess() {
-    console.log(guess.key);
-    document.querySelector('#guess').textContent = guess.key + (',');
+document.onkeyup = function guess(e) {
+    console.log(e.key);
+    document.querySelector('#guess').textContent = e.key + (',');
+
 };
 
 
-for (var i = 0; i < 10; i++) {
 
-    if (randomLetter() === guess()) {
-        console.log("you got me");
-        win++
-        guestleft--;
-    } else {
-        console.log("nope");
-        loss = this.loss + 1;
-        guestleft--;
+
+
+var letter = randomLetter();
+var guess = guess(e);
+var win = 0;
+var loss = 0;
+var total = 10;
+letterused = [];
+
+document.querySelector('#win').textContent = win;
+document.querySelector('#loss').textContent = loss;
+document.querySelector('#guessleft').textContent = total;
+
+letteruse.push(guess);
+
+
+
+
+
+if (letter === guess) {
+    console.log("you got me");
+    win++
+    total--;
+
+} else if {
+    console.log("nope");
+    loss = this.loss + 1;
+    total--;
+letterused.push(guess);
     }
 }
+
+
+
+
+
+// document.getElementById('win').innerHTML = win;
+// document.getElementById('loss').innerHTML = loss;
+// document.getElementById('guessleft').innerHTML = guessleft;
