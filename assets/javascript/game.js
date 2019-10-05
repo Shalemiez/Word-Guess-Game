@@ -1,50 +1,50 @@
+var letter = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+
+
+document.onkeyup = function (event) {
+    var guess = event.key;
+    document.querySelector('#guess').textContent = event.key;
+    console.log(event.key)
+};
 function randomLetter() {
-    var letter = "abcdefghijklmnopqrstuvwxyz"
-    var num = Math.floor((Math.random() * letter.length + 1));
-    var ranletter = letter.charAt(num);
+    var num = Math.floor((Math.random() * letter.length));
+    var ranletter = letter[num];
     return ranletter;
 
 }
 
-document.onkeyup = function guess(e) {
-    console.log(e.key);
-    document.querySelector('#guess').textContent = e.key + (',');
-
-};
-
-
-
-
-
-var letter = randomLetter();
-var guess = guess(e);
+var computer = randomLetter();
 var win = 0;
 var loss = 0;
 var total = 10;
 letterused = [];
 
+
+
 document.querySelector('#win').textContent = win;
 document.querySelector('#loss').textContent = loss;
-document.querySelector('#guessleft').textContent = total;
+document.querySelector('#total').textContent = total;
 
-letteruse.push(guess);
+function reset() {
+    total = 10;
+    win = 0;
+    loss = 0;
+}
 
 
 
 
-
-if (letter === guess) {
+if (computer === guess) {
     console.log("you got me");
     win++
-    total--;
 
-} else if {
+} else {
     console.log("nope");
-    loss = this.loss + 1;
+    loss++;
     total--;
-letterused.push(guess);
-    }
+    letterused.push(guess);
 }
+
 
 
 
