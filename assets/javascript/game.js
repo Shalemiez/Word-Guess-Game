@@ -4,6 +4,7 @@ var win = 0;
 var loss = 0;
 var guessleft = 10;
 var letterused = [];
+var guess = '';
 
 var winDiv = document.querySelector('#win');
 winDiv.textContent = win;
@@ -28,54 +29,52 @@ function reset() {
     win = 0;
     lossDiv.textContent = loss;
     winDiv.textContent = win;
-
     guessleftDiv.textContent = guessleft;
+    guessDiv.textContent = guess;
+
 
 
 
 
 }
-//----------use input--------------
+//----------user input--------------
 
 
-if (guessleft !== 0) {
-    randomLetter();
-    document.onkeyup = function (event) {
-        document.querySelector('#guess').textContent = event.key;
-        var guess = event.key;
 
-        // letterused.push(guess);
-        // letterused.join(",")
-        // console.log('b4 if ', total)
-        // guessDiv.textContent = guess;
-        // count++
-        // console.log(count)
+document.onkeyup = function (event) {
+    document.querySelector('#guess').textContent = event.key;
+    var guess = event.key;
 
-
-        if (computer === guess) {
-            win++;
-            guessleft = 10;
-            alert('You got me')
-            winDiv.textContent = win;
-            guessleftDiv.textContent = guessleft;
+    letterused.push(guess);
+    // letterused.join(",")
+    // console.log('b4 if ', total)
+    // guessDiv.textContent = guess;
+    // count++
+    // console.log(count)
 
 
-        } else {
-            guessleft--;
-            loss++;
-            document.querySelector('#guessleft').textContent = guessleft;
-            console.log('inside if', guessleft);
-        }
-        if (guessleft === 0) {
-            reset();
-            alert("Better Luck Next Time !")
+    if (computer === guess) {
+        win++;
+        guessleft = 10;
+        alert('You got me')
+        winDiv.textContent = win;
+        guessleftDiv.textContent = guessleft;
+        randomLetter()
 
 
-        }
+    } else {
+        guessleft--;
+        document.querySelector('#guessleft').textContent = guessleft;
+        console.log('inside if', guessleft);
     }
-
-};
-
-
-
-
+    if (guessleft === 0) {
+        alert("Ha  !Better Luck Next Time !");
+        loss++;
+        guessleft = 10;
+        lossDiv.textContent = loss;
+    }
+    if (loss === 5 || win === 2) {
+        alert("Really????  ZZzzzz..I am tired..Bye");
+        reset();
+    }
+}
