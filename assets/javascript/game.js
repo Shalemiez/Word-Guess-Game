@@ -1,80 +1,75 @@
 var letter = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-var computer = randomLetter();
+var randomLetter = letter[Math.floor(Math.random() * letter.length)];
 var win = 0;
 var loss = 0;
 var guessleft = 10;
 var letterused = [];
-var guess = '';
+console.log("random letter is" + " " + randomLetter);
+
 
 var winDiv = document.querySelector('#win');
 winDiv.textContent = win;
 var guessDiv = document.querySelector('#guess');
-guessDiv.textContent = guess;
+guessDiv.textContent = letterused;
 var lossDiv = document.querySelector('#loss');
 lossDiv.textContent = loss;
 var guessleftDiv = document.querySelector('#guessleft');
 guessleftDiv.textContent = guessleft;
 
-//-------Creat Random Letter---------
-function randomLetter() {
-    var num = Math.floor((Math.random() * letter.length));
-    var ranletter = letter[num];
-    console.log(ranletter)
-    return ranletter;
-}
+
+
 //-----------Reset---------------
-function reset() {
+var reset = function () {
     guessleft = 10;
-    loss = 0;
-    win = 0;
-    lossDiv.textContent = loss;
-    winDiv.textContent = win;
-    guessleftDiv.textContent = guessleft;
-    guessDiv.textContent = guess;
-
-
-
-
-
+    letterused = [];
+    randomLetter = letter[Math.floor(Math.random() * letter.length)];
+    console.log("Your next random letter:  " + randomLetter);
 }
+
+// lossDiv.textContent = loss;
+// winDiv.textContent = win;
+guessleftDiv.textContent = guessleft;
+guessDiv.textContent = guess;
+
+
+
+
+
+
 //----------user input--------------
-
-
-
 document.onkeyup = function (event) {
-    document.querySelector('#guess').textContent = event.key;
-    var guess = event.key;
-
+    document.querySelector('#guess').textContent = event.key
+    var guess = String.fromCharCode(event.keyCode).toLowerCase();
+    guessleft--;
+    guessleftDiv.textContent = guessleft;
     letterused.push(guess);
-    // letterused.join(",")
-    // console.log('b4 if ', total)
-    // guessDiv.textContent = guess;
-    // count++
-    // console.log(count)
+    letterused.join('');
+    guessDiv.textContent = letterused;
+    console.log(guess)
 
 
-    if (computer === guess) {
-        win++;
-        guessleft = 10;
-        alert('You got me')
-        winDiv.textContent = win;
-        guessleftDiv.textContent = guessleft;
-        randomLetter()
 
 
-    } else {
+    if (randomLetter === guess) {
         guessleft--;
-        document.querySelector('#guessleft').textContent = guessleft;
-        console.log('inside if', guessleft);
+        win++;
+        winDiv.textContent = win;
+        alert('You got me')
+        reset();
     }
+
+
     if (guessleft === 0) {
-        alert("Ha  !Better Luck Next Time !");
+        guessleft--;
         loss++;
-        guessleft = 10;
         lossDiv.textContent = loss;
+        alert("Ha  !Better Luck Next Time !");
+        reset()
+
     }
-    if (loss === 5 || win === 2) {
-        alert("Really????  ZZzzzz..I am tired..Bye");
+    if (win === 5) {
+        guessleft--;
+        alert("Really? ZZzz... you can't do that !");
         reset();
     }
 }
